@@ -6,7 +6,7 @@ ARG GID=1880
 
 RUN addgroup -g $GID github \
     && adduser -s /bin/false -D -H -G github -u $UID github \
-    && apk add --no-cache python3 \
+    && apk add --no-cache git python3 \
     && pip3 install --upgrade pip github-backup
 
 VOLUME /data
