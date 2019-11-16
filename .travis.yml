@@ -21,8 +21,8 @@ script:
 deploy:
   provider: script
   script:
-    - echo "$DOCKER_PWD" | docker login -u "$DOCKER_USER" --password-stdin
-    - docker push $DOCKER_USER/github-backup:$ARCH
-    - docker push $DOCKER_USER/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER
+    echo "$DOCKER_PWD" | docker login -u "$DOCKER_USER" --password-stdin &&
+    docker push $DOCKER_USER/github-backup:$ARCH &&
+    docker push $DOCKER_USER/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER;
   on:
     branch: master
