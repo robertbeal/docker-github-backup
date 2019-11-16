@@ -12,6 +12,7 @@ env:
 
 before_script:
   - ./build.sh $ARCH
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
 script:
   - docker build -t $DOCKER_USER/github-backup:$ARCH -t $DOCKER_USER/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER --file Dockerfile.$ARCH .
