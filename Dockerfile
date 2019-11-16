@@ -9,6 +9,7 @@ RUN addgroup -g $GID git \
     && apk add --no-cache python3 \
     && pip3 install --upgrade pip github-backup
 
+VOLUME /data
 USER git
 ENTRYPOINT ["/usr/bin/github-backup"]
 CMD ["--help"]
