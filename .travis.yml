@@ -14,15 +14,14 @@ before_script:
   - ./build.sh $ARCH
 
 script:
-  - docker build -t robertbeal/github-backup:$ARCH -t robertbeal/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER --file Dockerfile.$ARCH .
-  - docker run -d --name=github-backup-$ARCH robertbeal/github-backup:$ARCH --version
-  - if [[ $? -ne 0 ]]; then exit 1; fi
+  - docker build -t $DOCKER_USER/github-backup:$ARCH -t $DOCKER_USER/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER --file Dockerfile.$ARCH .
+  - if ! docker run -d --name=github-backup-$ARCH $DOCKER_USER/github-backup:$ARCH --version; then exit 1; fi
 
 deploy:
   provider: script
   script:
     - echo "$DOCKER_PWD" | docker login -u "$DOCKER_USER" --password-stdin
-    - docker push robertbeal/github-backup:$ARCH
-    - docker push robertbeal/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER
+    - docker push $DOCKER_USER/github-backup:$ARCH
+    - docker push $DOCKER_USER/github-backup:$ARCH.$TRAVIS_BUILD_NUMBER
   on:
     branch: master
