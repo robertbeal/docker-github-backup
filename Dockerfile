@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     && adduser -s /bin/false -D -G github -u $UID github \
     && mkdir -p /home/github/.ssh \
     # stop interactive prompt to allow github.com fingerprint
-    && ssh-keyscan github.com >> /home/github/.ssh/known_hosts \
+    && ssh-keyscan github.com >> /home/github/.ssh/known_hosts
 
 ENV HOME /home/github
 VOLUME /data
