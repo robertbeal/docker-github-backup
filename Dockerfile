@@ -16,6 +16,7 @@ RUN apk add --no-cache \
     && ssh-keyscan github.com >> /home/github/.ssh/known_hosts \
     && chown -R github:github /home/github/.ssh
 
+WORKDIR /home/github
 ENV HOME /home/github
 VOLUME /data
 USER github
