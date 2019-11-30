@@ -10,11 +10,7 @@ RUN apk add --no-cache \
     python3 \
     && pip3 install --upgrade pip github-backup \
     && addgroup -g $GID github \
-    && adduser -s /bin/false -D -G github -u $UID github \
-    && mkdir -p /home/github/.ssh \
-    # stop interactive prompt to allow github.com fingerprint
-    && ssh-keyscan github.com >> /home/github/.ssh/known_hosts \
-    && chown -R github:github /home/github/.ssh
+    && adduser -s /bin/false -D -G github -u $UID github
 
 WORKDIR /home/github
 ENV HOME /home/github
