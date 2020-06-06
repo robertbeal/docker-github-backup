@@ -8,6 +8,7 @@ RUN apk add --no-cache \
     git \
     openssh-client \
     python3 \
+    py3-pip \
     && pip3 install --upgrade pip github-backup \
     && addgroup -g $GID github \
     && adduser -s /bin/false -D -G github -u $UID github
